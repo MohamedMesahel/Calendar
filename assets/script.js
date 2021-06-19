@@ -1,8 +1,7 @@
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function (event1) {
   
   var calendarEl = document.getElementById('calendar');
-
   var calendar = new FullCalendar.Calendar(calendarEl, {
     
     headerToolbar: {
@@ -11,22 +10,41 @@ document.addEventListener('DOMContentLoaded', function() {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     initialDate: '2021-06-17',
+
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
     selectMirror: true,
-    select: function(arg) {
-      var title = prompt('Event Title:');
-      if (title) {
-        calendar.addEvent({
-          title: title,
-          start: arg.start,
-          end: arg.end,
-          allDay: arg.allDay
-        })
-      }
-      calendar.unselect()
+  
+
+  select: function(arg) {
+    var title = prompt('Event Title:');
+      localStorage.setItem('saveDescription', title);
+      localStorage.setItem('saveDATA', arg.start);
+
+      var eventData = {
+        title: title,
+        start: arg.start,
+        end: arg.end,
+        allDay: arg.allDaym, 
+      };
+
+      localStorage.setItem('eventData',JSON.stringify(eventData));
+
+
+      
+      console.log("This is a value of saveDescription" + localStorage.getItem('saveDescription'));
+         if (title) {
+          console.log( "This value is being passed into the if(title) " +localStorage.getItem('saveDescription'));
+          calendar.addEvent(eventData)  
+          
+        }
+      calendar.unselect()  
+
+    
+      
     },
     eventClick: function() {
+      
       if (confirm('Are you sure you want to delete this event?')) {
         arg.event.remove()
       }
@@ -34,60 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     editable: true,
     dayMaxEvents: true, // allow "more" link when too many events
     events: [
-      {
-        title: 'All Day Event',
-        start: '2020-09-01'
-      },
-      {
-        title: 'Long Event',
-        start: '2020-09-07',
-        end: '2020-09-10'
-      },
-      {
-        groupId: 999,
-        title: 'Repeating Event',
-        start: '2020-09-09T16:00:00'
-      },
-      {
-        groupId: 999,
-        title: 'Repeating Event',
-        start: '2020-09-16T16:00:00'
-      },
-      {
-        title: 'Conference',
-        start: '2020-09-11',
-        end: '2020-09-13'
-      },
-      {
-        title: 'Meeting',
-        start: '2020-09-12T10:30:00',
-        end: '2020-09-12T12:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: '2020-09-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: '2020-09-12T14:30:00'
-      },
-      {
-        title: 'Happy Hour',
-        start: '2020-09-12T17:30:00'
-      },
-      {
-        title: 'Dinner',
-        start: '2020-09-12T20:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2020-09-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: '2020-09-28'
-      }
+    
     ],
     // THIS KEY WON'T WORK IN PRODUCTION!!!
       // To make your own Google API key, follow the directions here:
@@ -110,8 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       
   });
- 
-  calendar.render();
+
+  console.log(localStorage.getItem('saveDATA'));
+  var savedData = localStorage.getItem('eventData');
+  if(savedData) {
+    calendar.addEvent(JSON.parse(savedData))
+  }   
+
+  calendar.render()
 });
 
 
@@ -166,6 +137,19 @@ document.addEventListener('DOMContentLoaded', function() {
 //   calendar.render();
 
 // });
+//$("#calendar.saved-description").val(localStorage.getItem('savedDescription'));
+//setInterval(event1);
+
+/* calendar.addEvent({
+  title: localStorage.getItem('saveDescription'),
+  
+  start: arg.start,
+  end: arg.end,
+  allDay: arg.allDay
+});
+*/
+
+
   function continous() {
     var time = moment().format("dddd MMMM Do YYYY hh:mm:ss");
     $(".time-current").text(time);
