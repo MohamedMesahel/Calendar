@@ -77,10 +77,18 @@ document.addEventListener('DOMContentLoaded', function (event1) {
   });
 
   console.log(localStorage.getItem('saveDATA'));
+
+  
+
   var savedData = localStorage.getItem('eventData');
+   // var eventArray = [];
+   //eventArray.push(savedData);
+   //for (var i = 0; i <= eventArray.length; i++) {
   if(savedData) {
+  //var internalSelect = eventArray[i];
     calendar.addEvent(JSON.parse(savedData))
-  }   
+  }
+//}   
 
   calendar.render()
 });
