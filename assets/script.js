@@ -81,14 +81,17 @@ document.addEventListener('DOMContentLoaded', function (event1) {
   
 
   var savedData = localStorage.getItem('eventData');
-   // var eventArray = [];
-   //eventArray.push(savedData);
-   //for (var i = 0; i <= eventArray.length; i++) {
+    var eventArray = [];
+    // calendarEl.addeventListener('click', eventArray.push(savedData));
+   eventArray.push(savedData);
+   
+   for (var i = 0; i <= eventArray.length; i++) {
+    
   if(savedData) {
-  //var internalSelect = eventArray[i];
+  var internalSelect = eventArray[i]
     calendar.addEvent(JSON.parse(savedData))
   }
-//}   
+}   
 
   calendar.render()
 });
