@@ -575,48 +575,23 @@ eventsBox.append(start);
 fetchButton.addEventListener('click', getApi);
 
 
-
-/*function getdata () {
-  var forecastDisplay = document.querySelector(".forecast");
-  var cityDisplay = document.querySelector(".city");
-  var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=Seattle&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
-  fetch(requestUrl)
-   .then(function (response) {
-     return response.json();
-   })
-   .then(function (data) {
-     console.log(data.main.temp);
-     forecastDisplay.innerHTML = "Temp " + data.main.temp;
-     cityDisplay.innerHTML = "City " + data.name
-     
-     
-     return ;
-   });
-   
- }
-
- getdata();
- */
-
+/* This is the forecast function that is displayed on the HTML - JASON MA
+*/
  function getFuture() {
   console.log("getFuture function has initiated");
-  var city = "Seattle";
-  //var listenButton = document.querySelector("#searchCity");
-      
-     // listenButton.addEventListener('click', city = $('#searchTerm').val());
-      
-  //var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
+  
   var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=Seattle&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
   fetch(requestUrl)
    .then(function (response) {
      return response.json();
    })
    .then(function (data) {
-     $("#day-one-time").text(data.list[0].dt_txt);
-     $("#day-two-time").text(data.list[8].dt_txt);
-     $("#day-three-time").text(data.list[16].dt_txt);
-     $("#day-four-time").text(data.list[24].dt_txt);
-     $("#day-five-time").text(data.list[32].dt_txt);
+  // Moment converts the time from data.list
+     $("#day-one-time").text(moment(data.list[0].dt_txt).format("MMM D, YYYY"));
+     $("#day-two-time").text(moment(data.list[8].dt_txt).format("MMM D, YYYY"));
+     $("#day-three-time").text(moment(data.list[16].dt_txt).format("MMM D, YYYY"));
+     $("#day-four-time").text(moment(data.list[24].dt_txt).format("MMM D, YYYY"));
+     $("#day-five-time").text(moment(data.list[32].dt_txt).format("MMM D, YYYY"));
      console.log(data.list[0].dt_txt);
      $("#day-one-temperature").text("Temperature " +data.list[0].main.temp);
      $("#day-two-temperature").text("Temperature " +data.list[8].main.temp);
