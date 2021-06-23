@@ -1,9 +1,35 @@
+* {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button {
+  border:white;
+  border-radius: 20px;
+  background-color:#ffffff;
+  color:black;
+  padding:5px;
+  font-weight: bold;
+}
+input {
+  border:white;
+  border-radius: 20px;
+  padding:5px;
+}
+
+#searchTerm {
+margin-bottom:15px;
+}
+
 #page-container {
   position: relative;
   min-height: 100vh;
   background-color: #1F2232;
   background-image: url("/assets/images/image.png");
   background-size: auto;
+  }
+
+  .todo-input{
+    font-weight: bolder;
   }
   
   .header{
@@ -101,10 +127,9 @@ td {
   display: block;
   margin-bottom: 1rem;
   }
-
-.eventButton {
-  border: 1px solid #596475;
-  color: black;
+.eventButton{
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /* for mobile or small devices */

@@ -85,7 +85,7 @@
       <div class="todo-grid-parent">
         <div>
           <div class="todo-input todo-block">
-            <span>To-Do</span>
+            <span>To-Do:</span>
             <input type="text" placeholder="Enter new to-do" />
             <span>Category: </span>
             <input type="text" placeholder="Enter category" list="categoryList" />
@@ -94,14 +94,14 @@
             </datalist>
             <span>Date:</span>
             <input type="date" id="dateInput" />
-            <span>Time</span>
+            <span>Time:</span>
             <input type="time" id="timeInput" />
             <span></span>
             <button id="addBtn">Add</button>
             <span></span>
             <button id="sortBtn">Sort by Date</button>
             <span></span>
-            <label><input type="checkbox" id="shortlistBtn">Incomplete First</label>
+            <label><input type="checkbox" id="shortlistBtn"> Incomplete First</label>
           </div>
 
           <!-- Table which lists todo's -->
@@ -113,7 +113,7 @@
                     <td></td>
                     <td>Date</td>
                     <td>Time</td>
-                    <td>to-do</td>
+                    <td>To-do</td>
                     <td>
                       <select id="categoryFilter">
                         <option value=""></option>
@@ -139,8 +139,8 @@
                Enter City
               </p>
               <div>
-                <input type="text" id ="searchTerm" class="searchValue" placeholder="city name">
-                <button type='button' class = "btn btn-primary" id = "searchCity">:mag:Search For City</button>
+                <input type="text" id ="searchTerm" class="searchValue" placeholder="City Name">
+                <button type='button' class = "btn btn-primary" id = "searchCity">Search</button>
             </div>
            
            
@@ -211,14 +211,14 @@
           <div class="todo-input todo-block">
             <span>To-Do</span>
             <input type="text" placeholder="Enter new to-do" id="todo-edit-todo" />
-            <span>Category: </span>
+            <span>Category:</span>
             <input type="text" placeholder="Enter category" list="categoryList" id="todo-edit-category" />
             <datalist id="categoryList">
               <option value=""></option>
             </datalist>
             <span>Date:</span>
             <input type="date" id="todo-edit-date" />
-            <span>Time</span>
+            <span>Time:</span>
             <input type="time" id="todo-edit-time" />
             <span></span>
             <button id="saveChangesBtn">Save Changes</button>
