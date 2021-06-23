@@ -573,3 +573,64 @@ eventsBox.append(start);
 });
 };
 fetchButton.addEventListener('click', getApi);
+
+var APIKey = "&appid=0a3eb332892c14227c97ed8390936741";
+var  userCity = $("#searchTerm").val();
+
+
+// const city = $("<h4>").addClass("card-title").text(response.name);
+// var name = element.textContent;s
+
+var searchCity = $("#searchCity");
+// searchButton.addEventListener("click", getApi);
+// var searchButton = $.Event( "click", getApi );
+
+console.log('CITY DISPLAY. atleast this works');
+
+var queryURL=
+"https://api.openweathermap.org/data/2.5/weather?q=" + userCity + APIKey;
+searchCity.one("click", cityDisplay);
+$("#searchTerm").val("");
+  function cityDisplay() {
+   
+
+  
+   $.ajax({
+      url: queryURL,
+      method:'GET'
+
+     
+    })
+      .then(function (response) {
+        display(response);
+       
+        console.log(response)
+        console.log(response.name)
+        console.log(response.weather)
+        console.log(response.main);
+     
+
+        
+      
+        console.log(tempF)
+        fetchDataID(city, weatherObject);
+      
+      });
+      
+    
+    }
+
+    function display(response) {
+      var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+      tempF = Math.floor(tempF);
+
+      let listItem = $(".hero-body").addClass("list-group-item").text(userCity);
+      $(".card").append(listItem);
+
+      listTemp = $("card").addClass('list-item-group').text(tempF);
+      $("card").append(listTemp);
+     
+        // listTemp = 
+    } 
+
+   
