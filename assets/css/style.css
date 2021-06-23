@@ -1,12 +1,13 @@
 #page-container {
   position: relative;
   min-height: 100vh;
+  background-color: #1F2232;
   }
   
   .header{
   padding-bottom: 1rem;
   }
-  
+    
   .footer{
   position: relative;
   bottom: 0;
@@ -18,7 +19,7 @@
 }
 
 td {
-  border: 1px solid black;
+  border: 1px solid ;
   padding: 5px;
 }
 
@@ -26,21 +27,22 @@ td {
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 1rem;
+  background-color: white;
 }
 
 .todo-table-class{
-  border: 1px solid #ff8e72;
+  border: 3px solid #596475;
   border-radius: 20px;
+  background-color: white;
 }
 
 .todo-block {
-  border: 1px solid #ff8e72;
+  border: 3px solid #596475;
   padding: 1rem;
   border-radius: 20px;
-  color: #ed6a5e;
+  color: black;
+  background-color: white;
 }
-
-
 
 .todo-overlay {
   width: 100vw;
@@ -88,17 +90,17 @@ td {
 
 #eventsbox {
   display:inline-block;
-  border: 1px solid #ff8e72;
+  border: 3px solid #596475;
   position:relative;
   padding:1rem;
-  margin-top: 50px;
   border-radius: 30px;
-  color: #ed6a5e;
+  color: black;
+  background-color: white;
 }
 
 .eventButton {
-  border: 1px solid #ff8e72;
-  color: #ed6a5e;
+  border: 1px solid #596475;
+  color: black;
 }
 
 /* for mobile or small devices */
