@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <title>Calendar</title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
   <!-- Bulma Link -->
@@ -68,6 +68,7 @@
           <h1 class="is-size-1">
             Life Organizer
           </h1>
+          
         </div>
 
         <!-- Help & Settings Buttons -->
@@ -133,6 +134,73 @@
           </div>
           <!--End of Local Events Box-->
 
+
+          <section class="hero is-primary">
+            <div class="hero-body">
+              <p class="title">
+               Enter City
+              </p>
+              <div>
+                <input type="text" id ="searchTerm" class="searchValue" placeholder="city name">
+                <button type='button' class = "btn btn-primary" id = "searchCity">:mag:Search For City</button>
+            </div>
+           
+           
+            <!-- Forecast showing city specific -->
+           <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-one-time">Day 1</h1></li> 
+              <li><p id = "day-one-temperature"> Temperature</p></li>
+              <li><p id = "day-one-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-one-wind"> WIND</p>  </li>
+              
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-two-time">Day 2</h1></li> 
+              <li><p id = "day-two-temperature"> Temperature</p> </li>
+              <li><p id = "day-two-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-two-wind"> WIND</p>  </li> 
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-three-time">Day 3</h1></li> 
+              <li><p id = "day-three-temperature"> Temperature</p> </li>
+              <li><p id = "day-three-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-three-wind"> WIND</p>  </li>  
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-four-time">Day 4</h1></li> 
+              <li><p id = "day-four-temperature"> Temperature</p> </li>
+              <li><p id = "day-four-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-four-wind"> WIND</p>  </li>
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-five-time">Day 5</h1></li> 
+              <li><p id = "day-five-temperature"> Temperature</p> </li>
+              <li><p id = "day-five-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-five-wind"> WIND</p>  </li>
+              
+          </ul>
+          </div>
+
+          <!-- Forcast end - JASON-->
+            </div>
+          </section>
+
+           
+
+
         </div>
 
         <div class="todo-calendar todo-block">
@@ -160,6 +228,7 @@
             <span></span>
             <button id="saveChangesBtn">Save Changes</button>
 
+             
           </div>
         </div>
         <div class="todo-modal-close-btn" id="todo-modal-close-btn">x</div>
@@ -170,6 +239,7 @@
 
   <footer class="footer">
     <div class="content has-text-centered">
+      
       <p>
         <strong>Team 5</strong> Task Scheduler Project
       </p>
@@ -179,7 +249,9 @@
 
   <!-- Main JS and Hamburger JS links -->
   <script src="assets/js/hamburger_menu.js"></script>
-  <script src="/assets/js/script.js"></script>
+  <script src="assets/js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
 </body>
 
 </html>
