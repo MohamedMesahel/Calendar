@@ -450,3 +450,51 @@ function todoMain() {
     let id = event.target.dataset.id;
   }
 }
+
+//Local Events Function
+var eventsBox = document.getElementById('eventsbox');
+var fetchButton = document.getElementById('fetch-button');
+
+function getApi() {
+fetch('https://api.predicthq.com/v1/places/?q=Seattle', {
+  method: 'GET', // or 'PUT'
+  headers:{
+    'Authorization':  'Bearer cc34uj9tf8II6ub8JPOu1ZkTBs_b-0fhLjYK9wO5',
+  },
+}) .then(function (response) {
+return response.json();
+}) .then(function (data) {
+  console.log(data.results)
+// for (var i = 0; i < data.results.length; i++) {
+// var events = document.createElement('h3');
+// var cityName = document.createElement('p');
+// events.textContent = data.results[0].name;
+// cityName.textContent = data.results[0].region;
+// eventsBox.append(events);
+// eventsBox.append(cityName);
+    // }
+ 
+fetch('https://api.predicthq.com/v1/events/?place.scope=5809844&active.gte=2021-06-21&active.lte=2022-06-21&category=community,concerts,festivals&sort=rank', {
+  method: 'GET', // or 'PUT'
+  headers: {
+    'Authorization':  'Bearer cc34uj9tf8II6ub8JPOu1ZkTBs_b-0fhLjYK9wO5',
+  },
+}) .then(function (response) {
+return response.json();
+}) .then(function (data) {
+  console.log(data.results)
+  for (var i = 0; i < data.results.length; i++){
+var eventsList = document.createElement('h3');
+var description = document.createElement('p');
+var start = document.createElement('p');
+eventsList.textContent = data.results[i].title;
+description.textContent = data.results[i].description;
+start.textContent = data.results[i].start;
+eventsBox.append(eventsList);
+eventsBox.append(description);
+eventsBox.append(start);
+    }
+});
+});
+};
+fetchButton.addEventListener('click', getApi);

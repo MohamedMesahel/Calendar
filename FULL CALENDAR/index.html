@@ -20,6 +20,7 @@
   <body>
     <h3>Zizo Calendar</h3>
     <h2 class="time-current" id="time-current"></h2>
+
     <div class="todo-grid-parent">
 
       <div>
@@ -43,7 +44,7 @@
           <span></span>
           <label><input type="checkbox" id="shortlistBtn">Incomplete First</label>
         </div>
-  
+ 
         <table id="todoTable" class="todo-block">
           <tr>
             <td></td>
@@ -58,13 +59,21 @@
             <td></td>
           </tr>
         </table>
-  
+  <!-- Local Events Box-->
+ <div id="eventsbox">
+  <h1>Local Events</h1>
+ <button class="eventButton" id="fetch-button">Click</button>
+</div>
+<!--End of Local Events Box-->
       </div>
 
       <div class="todo-calendar todo-block">
+
         <div id="calendar"></div>
       </div>
+      
     </div> 
+     
     <!-- class="todo-grid-parent"-->
     <div class="todo-overlay" id="todo-overlay">
     <div class="todo-modal" id="todo-modal">
@@ -87,6 +96,8 @@
     </div>
     <div class="todo-modal-close-btn" id="todo-modal-close-btn">x</div>
     </div>
+
+   
 
     <script src="./script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

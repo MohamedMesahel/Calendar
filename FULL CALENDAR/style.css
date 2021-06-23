@@ -1,3 +1,4 @@
+
 .strike {
   text-decoration: line-through;
 }
@@ -12,7 +13,7 @@ td {
   row-gap: 1rem;
 }
 #todoTable {
-  margin-top: 1rem;
+  margin-top: 50px;
 }
 
 .todo-block {
@@ -61,10 +62,33 @@ td {
   font-weight: bold;
 }
 
+.fc-button-group  {
+  background-color: #ff8e72;
+  color: #ed6a5e;
+}
+
+
 .slideIntoView {
     transform: translatex(0);
     transition: transform 750ms;
 }
+
+#eventsbox {
+  display:inline-block;
+  border: 1px solid #ff8e72;
+  position:relative;
+  padding:1rem;
+  margin-top: 50px;
+  border-radius: 30px;
+  color: #ed6a5e;
+}
+
+.eventButton {
+  border: 1px solid #ff8e72;
+  color: #ed6a5e;
+}
+
+
 /* for mobile or small devices */
 @media screen and (max-width: 767px) {
   #todoTable,
