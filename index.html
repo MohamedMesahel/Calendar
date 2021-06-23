@@ -133,6 +133,69 @@
           </div>
           <!--End of Local Events Box-->
 
+          <section class="todo-block">
+            <div class="hero-body">
+              <p class="title">
+               Enter City
+              </p>
+              <div>
+                <input type="text" id ="searchTerm" class="searchValue" placeholder="city name">
+                <button type='button' class = "btn btn-primary" id = "searchCity">:mag:Search For City</button>
+            </div>
+           
+           
+            <!-- Forecast showing city specific - JASON MA-->
+           <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-one-time">Day 1</h1></li> 
+              <li><p id = "day-one-temperature"> Temperature</p></li>
+              <li><p id = "day-one-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-one-wind"> WIND</p>  </li>
+              
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-two-time">Day 2</h1></li> 
+              <li><p id = "day-two-temperature"> Temperature</p> </li>
+              <li><p id = "day-two-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-two-wind"> WIND</p>  </li> 
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-three-time">Day 3</h1></li> 
+              <li><p id = "day-three-temperature"> Temperature</p> </li>
+              <li><p id = "day-three-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-three-wind"> WIND</p>  </li>  
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-four-time">Day 4</h1></li> 
+              <li><p id = "day-four-temperature"> Temperature</p> </li>
+              <li><p id = "day-four-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-four-wind"> WIND</p>  </li>
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-five-time">Day 5</h1></li> 
+              <li><p id = "day-five-temperature"> Temperature</p> </li>
+              <li><p id = "day-five-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-five-wind"> WIND</p>  </li>
+              
+          </ul>
+          </div>
+
+          <!-- Forcast end - JASON-->
+            </div>
+          </section>
+
         </div>
 
         <div class="todo-calendar todo-block">
@@ -144,7 +207,7 @@
 
       <!-- class="todo-grid-parent"-->
       <div class="todo-overlay" id="todo-overlay">
-        <div class="todo-modal" id="todo-modal">
+        <div class="todo-modal " id="todo-modal">
           <div class="todo-input todo-block">
             <span>To-Do</span>
             <input type="text" placeholder="Enter new to-do" id="todo-edit-todo" />
@@ -180,6 +243,8 @@
   <!-- Main JS and Hamburger JS links -->
   <script src="assets/js/hamburger_menu.js"></script>
   <script src="/assets/js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
 </body>
 
 </html>

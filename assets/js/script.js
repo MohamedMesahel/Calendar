@@ -573,3 +573,52 @@ eventsBox.append(start);
 });
 };
 fetchButton.addEventListener('click', getApi);
+
+/* This is the forecast function that is displayed on the HTML - JASON MA
+*/
+function getFuture() {
+  console.log("getFuture function has initiated");
+  
+  var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=Seattle&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
+  fetch(requestUrl)
+   .then(function (response) {
+     return response.json();
+   })
+   .then(function (data) {
+  // Moment converts the time from data.list
+     $("#day-one-time").text(moment(data.list[0].dt_txt).format("MMM D, YYYY"));
+     $("#day-two-time").text(moment(data.list[8].dt_txt).format("MMM D, YYYY"));
+     $("#day-three-time").text(moment(data.list[16].dt_txt).format("MMM D, YYYY"));
+     $("#day-four-time").text(moment(data.list[24].dt_txt).format("MMM D, YYYY"));
+     $("#day-five-time").text(moment(data.list[32].dt_txt).format("MMM D, YYYY"));
+     console.log(data.list[0].dt_txt);
+     $("#day-one-temperature").text("Temperature " +data.list[0].main.temp);
+     $("#day-two-temperature").text("Temperature " +data.list[8].main.temp);
+     $("#day-three-temperature").text("Temperature " +data.list[16].main.temp);
+     $("#day-four-temperature").text("Temperature " +data.list[24].main.temp);
+     $("#day-five-temperature").text("Temperature "+ data.list[32].main.temp);
+     //Finds Humidity in next 5 days
+     $("#day-one-precipitation").text("Precipitation % " +data.list[0].pop);
+     $("#day-two-precipitation").text("Precipitation % " +data.list[8].pop);
+     $("#day-three-precipitation").text("Precipitation % " +data.list[16].pop);
+     $("#day-four-precipitation").text("Precipitation % " +data.list[24].pop);
+     $("#day-five-precipitation").text("Precipitation % "+ data.list[32].pop);
+    // Finds Wind Forecast
+     $("#day-one-wind").text("Wind " +data.list[0].wind.speed);
+     $("#day-two-wind").text("Wind " +data.list[8].wind.speed);
+     $("#day-three-wind").text("Wind " +data.list[16].wind.speed);
+     $("#day-four-wind").text("Wind " +data.list[24].wind.speed);
+     $("#day-five-wind").text("Wind "+ data.list[32].wind.speed);
+     // Finds Weather
+   
+     $("#day-one-weather").text("weather " +data.list[0].weather.description);
+     $("#day-two-weather").text("weather " +data.list[8].weather.description);
+     $("#day-three-weather").text("weather " +data.list[16].weather.description);
+     $("#day-four-weather").text("weather " +data.list[24].weather.description);
+     $("#day-five-weather").text("weather "+ data.list[32].weather.description);
+   });
+   
+  
+}
+
+getFuture();
