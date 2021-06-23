@@ -207,16 +207,16 @@ function todoMain() {
     // tdElem2.dataset.editable = true;
     // tdElem3.dataset.editable = true;
 
-    // dateElem.dataset.type = "date";
-    // dateElem.dataset.value = date;
-    // timeElem.dataset.type = "time";
-    // tdElem2.dataset.type = "todo";
-    // tdElem3.dataset.type = "category";
+    dateElem.dataset.type = "date";
+    dateElem.dataset.value = date;
+    timeElem.dataset.type = "time";
+    tdElem2.dataset.type = "todo";
+    tdElem3.dataset.type = "category";
 
-    // dateElem.dataset.id = id;
-    // timeElem.dataset.id = id;
-    // tdElem2.dataset.id = id;
-    // tdElem3.dataset.id = id;
+    dateElem.dataset.id = id;
+    timeElem.dataset.id = id;
+    tdElem2.dataset.id = id;
+    tdElem3.dataset.id = id;
     // tdElem2.addEventListener("dblclick", allowEdit, false);
 
     function deleteItem() {
@@ -301,6 +301,20 @@ function todoMain() {
         right: "dayGridMonth,timeGridWeek,timeGridDay",
       },
       events: [],
+
+      googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+      // US Holidays
+      events: 'en.usa#holiday@group.v.calendar.google.com',
+      eventClick: function(arg) {
+        // opens events in a popup window
+        window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
+
+        arg.jsEvent.preventDefault() // don't navigate in main tab
+      },
+      loading: function(bool) {
+        document.getElementById('loading').style.display =
+          bool ? 'block' : 'none';
+      },
     });
 
     calendar.render();
@@ -444,9 +458,118 @@ function todoMain() {
     document.getElementById("todo-overlay").classList.remove("slideIntoView");
 
   }
+  // function commitSave(event) {
+  //   closeEditModalBox();
+
+  //   let id = event.target.dataset.id;
+  console.log("Hello", todoList)
+  // }
   function commitSave(event) {
     closeEditModalBox();
-
+    
     let id = event.target.dataset.id;
-  }
+    let todo = document.getElementById("todo-edit-todo").value;
+    let category = document.getElementById("todo-edit-category").value;
+    let date = document.getElementById("todo-edit-date").value;
+    let time = document.getElementById("todo-edit-time").value;
+    
+    // remove from Calendar
+    calendar.getEventById(id).remove();
+
+    for( let i = 0; i < todoList.length; i++){
+      if(todoList[i].id == id){
+ 
+       todoList[i] = {
+         id : id,
+         todo : todo,
+         category : category,
+         date : date,
+         time : time,
+        };
+ 
+        addEvent({
+         id: id,
+         title : todoList[i].todo,
+         start : todoList[i].date,
+       });
+       console.log(todoList[i], "app is running")
+      }
+    }
+    save();
+
+
+    // update the Table
+    let tdNodeList = todoTable.querrySelectorAll("td")
+    for(let i = 0; i < tdNodeList.length; i++){
+      if(tdNodeList[i].dataset.id == id){
+      let type = tdNodeList[i].dataset.type;
+      switch(type){
+        case "date":
+          tdNodeList[i].innerText = formatDate(date);
+          break;
+        case "time":
+          tdNodeList[i].innerText = time;
+          break;
+        case "todo" :
+          tdNodeList[i].innerText = todo;
+          break;
+        case "category" :
+          tdNodeList[i].innerText = category;
+          break;
+
+        }
+     
+      }
+    }
+   
+
+  } 
 }
+
+//Local Events Function
+var eventsBox = document.getElementById('eventsbox');
+var fetchButton = document.getElementById('fetch-button');
+
+function getApi() {
+fetch('https://api.predicthq.com/v1/places/?q=Seattle', {
+  method: 'GET', // or 'PUT'
+  headers:{
+    'Authorization':  'Bearer cc34uj9tf8II6ub8JPOu1ZkTBs_b-0fhLjYK9wO5',
+  },
+}) .then(function (response) {
+return response.json();
+}) .then(function (data) {
+  console.log(data.results)
+// for (var i = 0; i < data.results.length; i++) {
+// var events = document.createElement('h3');
+// var cityName = document.createElement('p');
+// events.textContent = data.results[0].name;
+// cityName.textContent = data.results[0].region;
+// eventsBox.append(events);
+// eventsBox.append(cityName);
+    // }
+ 
+fetch('https://api.predicthq.com/v1/events/?place.scope=5809844&active.gte=2021-06-21&active.lte=2022-06-21&category=community,concerts,festivals&sort=rank', {
+  method: 'GET', // or 'PUT'
+  headers: {
+    'Authorization':  'Bearer cc34uj9tf8II6ub8JPOu1ZkTBs_b-0fhLjYK9wO5',
+  },
+}) .then(function (response) {
+return response.json();
+}) .then(function (data) {
+  console.log(data.results)
+  for (var i = 0; i < data.results.length; i++){
+var eventsList = document.createElement('h3');
+var description = document.createElement('p');
+var start = document.createElement('p');
+eventsList.textContent = data.results[i].title;
+description.textContent = data.results[i].description;
+start.textContent = data.results[i].start;
+eventsBox.append(eventsList);
+eventsBox.append(description);
+eventsBox.append(start);
+    }
+});
+});
+};
+fetchButton.addEventListener('click', getApi);

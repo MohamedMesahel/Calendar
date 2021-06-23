@@ -1,118 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-    <link rel="stylesheet" href="./assets/style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
+  <!-- Bulma Link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
+
 <body>
-  <header>
-    <nav class="top-bar topbar-responsive">
-      <div class="top-bar-title">
-        <span data-responsive-toggle="topbar-responsive" data-hide-for="medium">
-          <button class="menu-icon" type="button" data-toggle></button>
-        </span>
-        <a class="topbar-responsive-logo" href="#"><strong>Site Title</strong></a>
-      </div>
-      <div id="topbar-responsive" class="topbar-responsive-links">
-        <div class="top-bar-right">
-          <ul class="menu simple vertical medium-horizontal">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
+  <div id="page-container">
+    <header class="header">
+      <nav class="navbar has-shadow is-white">
+
+        <!-- Hamburger menu and Logo-->
+        <div class="navbar-brand">
+          <div class="is-flex-mobile is-justify-content-flex-start">
+            <a class="navbar-burger" id="burger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tools & Welcome Buttons-->
+        <div class="navbar-menu" id="nav-links">
+          <div class="navbar-start dropdown" id="toolButton">
+            <a class="navbar-item is-unselectable is-clickable" aria-haspopup="true" aria-controls="dropdown-menu">
+              Tools
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </a>
+
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content is-unselectable">
+                <a href="#" class="dropdown-item is-clickable">
+                  Dropdown item
+                </a>
+                <a class="dropdown-item is-clickable">
+                  Other dropdown item
+                </a>
+                <a href="#" class="dropdown-item is-clickable">
+                  Active dropdown item
+                </a>
+                <a href="#" class="dropdown-item is-clickable">
+                  Other dropdown item
+                </a>
+                <hr class="dropdown-divider">
+                <a href="#" class="dropdown-item is-clickable">
+                  With a divider
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="mx-auto is-hidden-touch">
+          <h1 class="is-size-1">
+            Life Organizer
+          </h1>
+        </div>
+
+        <!-- Help & Settings Buttons -->
+        <div class="navbar-menu" id="nav-links-right">
+          <div class="navbar-end is-unselectable is-clickable">
+            <a href="" class="navbar-item">Help</a>
+            <a href="" class="navbar-item">Settings</a>
+          </div>
+        </div>
+
+      </nav>
+    </header>
+
+    <div class="px-4">
+      <div class="todo-grid-parent">
+        <div>
+          <div class="todo-input todo-block">
+            <span>To-Do</span>
+            <input type="text" placeholder="Enter new to-do" />
+            <span>Category: </span>
+            <input type="text" placeholder="Enter category" list="categoryList" />
+            <datalist id="categoryList">
+              <option value=""></option>
+            </datalist>
+            <span>Date:</span>
+            <input type="date" id="dateInput" />
+            <span>Time</span>
+            <input type="time" id="timeInput" />
+            <span></span>
+            <button id="addBtn">Add</button>
+            <span></span>
+            <button id="sortBtn">Sort by Date</button>
+            <span></span>
+            <label><input type="checkbox" id="shortlistBtn">Incomplete First</label>
+          </div>
+
+          <!-- Table which lists todo's -->
+          <div class="p-4">
+            <div class=" p-4 todo-table-class">
+              <table id="todoTable">
+                <thead class="table is-bordered">
+                  <tr>
+                    <td></td>
+                    <td>Date</td>
+                    <td>Time</td>
+                    <td>to-do</td>
+                    <td>
+                      <select id="categoryFilter">
+                        <option value=""></option>
+                      </select>
+                    </td>
+                    <td></td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+
+          <!-- Local Events Box-->
+          <div id="eventsbox">
+            <h1>Local Events</h1>
+            <button class="eventButton" id="fetch-button">Click</button>
+          </div>
+          <!--End of Local Events Box-->
+
+        </div>
+
+        <div class="todo-calendar todo-block">
+          <div id="calendar"></div>
         </div>
       </div>
-      <h5 class="time-current" id="time-current">Thursday June 17th 2021 07:08:57</h5>
 
-    </nav>
-  </header>
+      <div id="loading" style="display: none;">loading...</div>
 
-  <div id="dropdown-menu">
-    <ul class="menu dropdown"data-dropdown-menu>
-      <li>
-        <a href="#">Menu</a>
-        <ul class="menu">
-          <li class="has-submenu"><a href="#">Energy</a>
-            <ul class="submenu menu vertical" data-submenu>
-              <li><a href="#">One</a></li>
-              <li><a href="#">Two</a></li>
-              <li><a href="#">Three</a></li>
-            </ul>
-          </li>
-          <li class="has-submenu"><a href="#">Tech</a>
-            <ul class="submenu menu vertical" data-submenu>
-              <li><a href="#">One</a></li>
-              <li><a href="#">Two</a></li>
-              <li><a href="#">Three</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+      <!-- class="todo-grid-parent"-->
+      <div class="todo-overlay" id="todo-overlay">
+        <div class="todo-modal" id="todo-modal">
+          <div class="todo-input todo-block">
+            <span>To-Do</span>
+            <input type="text" placeholder="Enter new to-do" id="todo-edit-todo" />
+            <span>Category: </span>
+            <input type="text" placeholder="Enter category" list="categoryList" id="todo-edit-category" />
+            <datalist id="categoryList">
+              <option value=""></option>
+            </datalist>
+            <span>Date:</span>
+            <input type="date" id="todo-edit-date" />
+            <span>Time</span>
+            <input type="time" id="todo-edit-time" />
+            <span></span>
+            <button id="saveChangesBtn">Save Changes</button>
 
-  </div>
-  <!-- <div id="external-events">
-    <h4>Draggable Events</h4>
+          </div>
+        </div>
+        <div class="todo-modal-close-btn" id="todo-modal-close-btn">x</div>
 
-    <div id="external-events-list">
-      <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-        <div class="fc-event-main">My Event 1</div>
-      </div>
-      <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-        <div class="fc-event-main">My Event 2</div>
-      </div>
-      <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-        <div class="fc-event-main">My Event 3</div>
-      </div>
-      <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-        <div class="fc-event-main">My Event 4</div>
-      </div>
-      <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
-        <div class="fc-event-main">My Event 5</div>
       </div>
     </div>
-
-    <p>
-      <input type="checkbox" id="drop-remove">
-      <label for="drop-remove">remove after drop</label>
-    </p>
-  </div> -->
-  
-
-    <div class='clear'></div>
   </div>
-  
-  <div id="calendar"></div>
-  
-  <div id='loading'>loading...</div>
 
-
-  <footer>
-    <span>Thanks for visiting!</span>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Team 5</strong> Task Scheduler Project
+      </p>
+    </div>
   </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
-      <!--Link to external JavaScript file-->
-    
-      <script src="./assets/script.js"></script>
+
+  <!-- Main JS and Hamburger JS links -->
+  <script src="assets/js/hamburger_menu.js"></script>
+  <script src="/assets/js/script.js"></script>
 </body>
+
 </html>
-
-      
-
