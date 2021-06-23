@@ -207,16 +207,16 @@ function todoMain() {
     // tdElem2.dataset.editable = true;
     // tdElem3.dataset.editable = true;
 
-    // dateElem.dataset.type = "date";
-    // dateElem.dataset.value = date;
-    // timeElem.dataset.type = "time";
-    // tdElem2.dataset.type = "todo";
-    // tdElem3.dataset.type = "category";
+    dateElem.dataset.type = "date";
+    dateElem.dataset.value = date;
+    timeElem.dataset.type = "time";
+    tdElem2.dataset.type = "todo";
+    tdElem3.dataset.type = "category";
 
-    // dateElem.dataset.id = id;
-    // timeElem.dataset.id = id;
-    // tdElem2.dataset.id = id;
-    // tdElem3.dataset.id = id;
+    dateElem.dataset.id = id;
+    timeElem.dataset.id = id;
+    tdElem2.dataset.id = id;
+    tdElem3.dataset.id = id;
     // tdElem2.addEventListener("dblclick", allowEdit, false);
 
     function deleteItem() {
@@ -444,9 +444,71 @@ function todoMain() {
     document.getElementById("todo-overlay").classList.remove("slideIntoView");
 
   }
+  // function commitSave(event) {
+  //   closeEditModalBox();
+
+  //   let id = event.target.dataset.id;
+  console.log("Hello", todoList)
+  // }
   function commitSave(event) {
     closeEditModalBox();
-
+    
     let id = event.target.dataset.id;
-  }
+    let todo = document.getElementById("todo-edit-todo").value;
+    let category = document.getElementById("todo-edit-category").value;
+    let date = document.getElementById("todo-edit-date").value;
+    let time = document.getElementById("todo-edit-time").value;
+    
+    // remove from Calendar
+    calendar.getEventById(id).remove();
+
+    for( let i = 0; i < todoList.length; i++){
+      if(todoList[i].id == id){
+ 
+       todoList[i] = {
+         id : id,
+         todo : todo,
+         category : category,
+         date : date,
+         time : time,
+        };
+ 
+        addEvent({
+         id: id,
+         title : todoList[i].todo,
+         start : todoList[i].date,
+       });
+       console.log(todoList[i], "app is running")
+      }
+    }
+    save();
+
+
+    // update the Table
+    let tdNodeList = todoTable.querrySelectorAll("td")
+    for(let i = 0; i < tdNodeList.length; i++){
+      if(tdNodeList[i].dataset.id == id){
+      let type = tdNodeList[i].dataset.type;
+      switch(type){
+        case "date":
+          tdNodeList[i].innerText = formatDate(date);
+          break;
+        case "time":
+          tdNodeList[i].innerText = time;
+          break;
+        case "todo" :
+          tdNodeList[i].innerText = todo;
+          break;
+        case "category" :
+          tdNodeList[i].innerText = category;
+          break;
+
+        }
+     
+      }
+    }
+   
+
+  } 
 }
+
