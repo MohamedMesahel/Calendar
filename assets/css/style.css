@@ -89,7 +89,7 @@ td {
 }
 
 #eventsbox {
-  display:inline-block;
+  display:block;
   border: 3px solid #596475;
   position:relative;
   padding:1rem;
