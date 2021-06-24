@@ -17,7 +17,7 @@ If your README is long, add a table of contents to make it easy for users to fin
 - [Project Presentation]()
 - [Project Live Page]()
 - User Stories
-- Challanges
+- Challenges
 - [Credits](#credits)
 
 ## Installation
@@ -30,15 +30,15 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 
 
-## Secreen shots
+## Screen shots
 Welcome Page with useful resources
-![Welcome Page](Calendar-main/assets/images/Welcome.png)
+![Welcome Page](/assets/images/Welcome.png)
 Main Application responsive page
-![Appllication Page](Calendar-main/assets/images/Main.png)
+![Appllication Page](/assets/images/Main.png)
 Our Presentation
-![Presentation Page](Calendar-main/assets/images/Team.png)
+![Presentation Page](/assets/images/Team.png)
 Website general Wireframe
-![Wireframe Page](Calendar-main/assets/images/Wireframe.png)
+![Wireframe Page](/assets/images/Wireframe.png)
 
 ## Credits
 Mohamed Mesahel
