@@ -594,21 +594,7 @@ var cityLocation = "";
  // Step 3, render the target - JASON MA
  function getFuture() {
   console.log("getFuture function has initiated");
-  
-  
-  
-  
- /* var cityLocation = searchEl.val();
-  console.log( searchEl, searchEl.get(0).value );
-  c
-  console.log(cityLocation);
-  */
-
-
-  
-  
- 
-  
+   
   var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q= " + cityLocation + "&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
   fetch(requestUrl)
    .then(function (response) {
