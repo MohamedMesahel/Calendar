@@ -12,10 +12,9 @@ function todoMain() {
     todoList = [],
     calendar,
     shortlistBtn,
-    changeBtn;
+    changeBtn,
+    todoTable;
 
-  //  localStorage.setItem("todoList", todoList);
-  //  todoList = localStorage.getItem("todoList");
   //  console.loge(todoList);
 
   getElements();
@@ -23,8 +22,8 @@ function todoMain() {
   initCalendar();
   load();
   renderRows(todoList);
-  updateSelectoptions();
-
+  updateSelectOptions();
+  // Get elements
   function getElements() {
     inputElem = document.getElementsByTagName("input")[0];
     inputElem2 = document.getElementsByTagName("input")[1];
@@ -35,8 +34,9 @@ function todoMain() {
     selectElem = document.getElementById("categoryFilter");
     shortlistBtn = document.getElementById("shortlistBtn");
     changeBtn = document.getElementById("saveChangesBtn");
+    todoTable = document.getElementById("todoTable");
   }
-
+ // Add Event Listeners
   function addListeners() {
     addButton.addEventListener("click", addEntry, false);
     sortButton.addEventListener("click", sortEntery, false);
@@ -47,7 +47,7 @@ function todoMain() {
     document.getElementById("todo-modal-close-btn").addEventListener("click",  closeEditModalBox, false);
     changeBtn.addEventListener("click", commitSave, false);
   }
-
+ // Add Entry to the Table
   function addEntry(event) {
     let inputValue = inputElem.value;
     inputElem.value = "";
@@ -69,16 +69,17 @@ function todoMain() {
       time: timeValue,
       done: false,
     };
+
     renderRow(obj);
 
     todoList.push(obj);
 
     save();
 
-    updateSelectoptions();
+    updateSelectOptions();
   }
-
-  function updateSelectoptions() {
+ // Update Selected options
+  function updateSelectOptions() {
     let options = [];
 
     todoList.forEach((obj) => {
@@ -90,35 +91,39 @@ function todoMain() {
 
     selectElem.innerHTML = "";
 
-    let newOptionElem = document.createElement("option");
+    let newOptionElem = document.createElement('option');
     newOptionElem.value = DEFAULT_OPTION;
     newOptionElem.innerText = DEFAULT_OPTION;
     selectElem.appendChild(newOptionElem);
 
     for (let option of optionsSet) {
-      let newOptionElem = document.createElement("option");
+      let newOptionElem = document.createElement('option');
       newOptionElem.value = option;
       newOptionElem.innerText = option;
       selectElem.appendChild(newOptionElem);
     }
   }
+  // Save on local storage
   function save() {
     let stringified = JSON.stringify(todoList);
     localStorage.setItem("todoList", stringified);
   }
-
+  // Lodibg results after updating options
   function load() {
     let retrieved = localStorage.getItem("todoList");
 
     todoList = JSON.parse(retrieved);
     // console.log(typeof todoList)
-    if (todoList == null) todoList = [];
+    if (todoList == null)
+     todoList = [];
   }
+  // Rendring Calendar and Table Rows
   function renderRows(arr) {
-    arr.forEach((todoObj) => {
+    arr.forEach(todoObj => {
       renderRow(todoObj);
     });
   }
+  // Rendring Table Rows
   function renderRow({
     todo: inputValue,
     category: inputValue2,
@@ -146,8 +151,7 @@ function todoMain() {
 
     // date cell
     let dateElem = document.createElement("td");
-
-    dateElem.innerText = formatDate(date);
+    dateElem.innerText = date;
     trElem.appendChild(dateElem);
 
     // time cell
@@ -201,11 +205,6 @@ function todoMain() {
       start: date,
     });
 
-    // For edit on cell feature
-    // dateElem.dataset.editable = true;
-    // timeElem.dataset.editable = true;
-    // tdElem2.dataset.editable = true;
-    // tdElem3.dataset.editable = true;
 
     dateElem.dataset.type = "date";
     dateElem.dataset.value = date;
@@ -217,14 +216,15 @@ function todoMain() {
     timeElem.dataset.id = id;
     tdElem2.dataset.id = id;
     tdElem3.dataset.id = id;
-    // tdElem2.addEventListener("dblclick", allowEdit, false);
 
     function deleteItem() {
       trElem.remove();
-      updateSelectoptions();
+      updateSelectOptions();
       for (let i = 0; i < todoList.length; i++) {
-        if (todoList[i].id == this.dataset.id) todoList.splice(i, 1);
+        if (todoList[i].id == this.dataset.id) 
+         todoList.splice(i, 1);
       }
+
       save();
       // remove from Calendar
       calendar.getEventById(this.dataset.id).remove();
@@ -254,7 +254,7 @@ function todoMain() {
     }
     
   }
-
+  // UUID genrator 
   function _uuid() {
     var d = Date.now();
     if (
@@ -272,8 +272,9 @@ function todoMain() {
       }
     );
   }
-
-  function sortEntery() {
+  // Sort Entry
+  function sortEntery(t, a, s) {
+    
     // console.log("sortEntry runnig");
     todoList.sort((a, b) => {
       let aDate = Date.parse(a.date);
@@ -288,28 +289,42 @@ function todoMain() {
 
     renderRows(todoList);
   }
-
+ // Initiate Calendar Function
   function initCalendar() {
     var calendarEl = document.getElementById("calendar");
 
     calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: "dayGridMonth",
-      initialDate: "2021-06-07",
+      initialDate: new Date(),
       headerToolbar: {
         left: "prev,next today",
         center: "title",
         right: "dayGridMonth,timeGridWeek,timeGridDay",
       },
       events: [],
+
+      googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+      // US Holidays
+      events: 'en.usa#holiday@group.v.calendar.google.com',
+      eventClick: function(arg) {
+        // opens events in a popup window
+        window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
+
+        arg.jsEvent.preventDefault() // don't navigate in main tab
+      },
+      loading: function(bool) {
+        document.getElementById('loading').style.display =
+          bool ? 'block' : 'none';
+      },
     });
 
     calendar.render();
   }
-
+ // Adding the Events to Calendar
   function addEvent(event) {
     calendar.addEvent(event);
   }
-
+ // Clear Table
   function clearTable() {
     // Empty the Table and keep the first Row
     let trElems = document.getElementsByTagName("tr");
@@ -317,9 +332,9 @@ function todoMain() {
       trElems[i].remove();
     }
 
-    calendar.getEvents().forEach((event) => event.remove());
+    calendar.getEvents().forEach(event => event.remove());
   }
-
+ // Multiple Fillters for Tasks
   function multipleFilter() {
     clearTable();
 
@@ -330,36 +345,36 @@ function todoMain() {
     if (selection == DEFAULT_OPTION) {
       if (shortlistBtn.checked) {
         let filteredIncompleteArray = todoList.filter(
-          (obj) => obj.done == false
+          obj => obj.done == false
         );
         renderRows(filteredIncompleteArray);
 
-        let filteredDoneArray = todoList.filter((obj) => obj.done == true);
+        let filteredDoneArray = todoList.filter(obj => obj.done == true);
         renderRows(filteredDoneArray);
       } else {
         renderRows(todoList);
       }
     } else {
       let filteredCategoryArray = todoList.filter(
-        (obj) => obj.category == selection
+        obj => obj.category == selection
       );
 
       if (shortlistBtn.checked) {
         let filteredIncompleteArray = filteredCategoryArray.filter(
-          (obj) => obj.done == false
+          obj => obj.done == false
         );
         renderRows(filteredIncompleteArray);
 
         let filteredDoneArray = filteredCategoryArray.filter(
-          (obj) => obj.done == true
+          obj => obj.done == true
         );
         renderRows(filteredDoneArray);
       } else {
-        renderRows(filteredDoneArray);
+        renderRows(filteredCategoryArray);
       }
     }
   }
-
+ // Table Elements
   function onTableClicked(event) {
     if (event.target.matches("td") && event.target.dataset.editable == "true") {
       let tempInputElem;
@@ -425,31 +440,26 @@ function todoMain() {
 
     }
   }
-
+ // Date Formate
   function formatDate(date) {
     let dateObj = new Date(date);
-    let formattedDate = dateObj.toLocaleString("en-US", {
+    let formattedDate = dateObj.toLocaleString("en-GB", {
       month: "long",
       day: "numeric",
       year: "numeric",
     });
     return formattedDate;
   }
-
+ // Showing the Overlay page
   function showEditModalBox(event) {
     document.getElementById("todo-overlay").classList.add("slideIntoView");
   }
-
+ // Editing the Overlay page
   function closeEditModalBox(event) {
     document.getElementById("todo-overlay").classList.remove("slideIntoView");
 
   }
-  // function commitSave(event) {
-  //   closeEditModalBox();
-
-  //   let id = event.target.dataset.id;
-  console.log("Hello", todoList)
-  // }
+  // Saving Data after editing
   function commitSave(event) {
     closeEditModalBox();
     
@@ -457,6 +467,8 @@ function todoMain() {
     let todo = document.getElementById("todo-edit-todo").value;
     let category = document.getElementById("todo-edit-category").value;
     let date = document.getElementById("todo-edit-date").value;
+    // dateElem.dataset.value = date;
+
     let time = document.getElementById("todo-edit-time").value;
     
     // remove from Calendar
@@ -471,6 +483,7 @@ function todoMain() {
          category : category,
          date : date,
          time : time,
+         done : false,
         };
  
         addEvent({
@@ -478,37 +491,152 @@ function todoMain() {
          title : todoList[i].todo,
          start : todoList[i].date,
        });
-       console.log(todoList[i], "app is running")
       }
     }
     save();
 
 
     // update the Table
-    let tdNodeList = todoTable.querrySelectorAll("td")
+    let tdNodeList = todoTable.querySelectorAll(`td[data-id='${id}']`);
     for(let i = 0; i < tdNodeList.length; i++){
-      if(tdNodeList[i].dataset.id == id){
-      let type = tdNodeList[i].dataset.type;
-      switch(type){
-        case "date":
-          tdNodeList[i].innerText = formatDate(date);
-          break;
-        case "time":
-          tdNodeList[i].innerText = time;
-          break;
-        case "todo" :
-          tdNodeList[i].innerText = todo;
-          break;
-        case "category" :
-          tdNodeList[i].innerText = category;
-          break;
-
+      //if(tdNodeList[i].dataset.id == id){
+        let type = tdNodeList[i].dataset.type;
+        switch(type){
+          case "date" :
+            tdNodeList[i].innerText = formatDate(date);
+            break;
+          case "time" :
+            tdNodeList[i].innerText = time;
+            break;
+          case "todo" :
+            tdNodeList[i].innerText = todo;
+            break;
+          case "category" :
+            tdNodeList[i].innerText = category;
+            break;
         }
-     
-      }
+      //}
     }
-   
-
-  } 
+  }
 }
 
+//Local Events Function
+var eventsBox = document.getElementById('eventsbox');
+var fetchButton = document.getElementById('fetch-button');
+
+ // Fetching Data from local Events
+
+function getApi() {
+fetch('https://api.predicthq.com/v1/places/?q=Seattle', {
+  method: 'GET', // or 'PUT'
+  headers:{
+    'Authorization':  'Bearer cc34uj9tf8II6ub8JPOu1ZkTBs_b-0fhLjYK9wO5',
+  },
+}) .then(function (response) {
+return response.json();
+}) .then(function (data) {
+  console.log(data.results)
+
+fetch('https://api.predicthq.com/v1/events/?place.scope=5809844&active.gte=2021-06-21&active.lte=2022-06-21&category=community,concerts,festivals&sort=rank', {
+  method: 'GET', // or 'PUT'
+  headers: {
+    'Authorization':  'Bearer cc34uj9tf8II6ub8JPOu1ZkTBs_b-0fhLjYK9wO5',
+  },
+}) .then(function (response) {
+return response.json();
+}) .then(function (data) {
+  console.log(data.results)
+  for (var i = 0; i < data.results.length; i++){
+var eventsList = document.createElement('h3');
+var description = document.createElement('p');
+var start = document.createElement('p');
+eventsList.textContent = data.results[i].title;
+description.textContent = data.results[i].description;
+start.textContent = data.results[i].start;
+eventsBox.append(eventsList);
+eventsBox.append(description);
+eventsBox.append(start);
+    }
+});
+});
+};
+fetchButton.addEventListener('click', getApi);
+
+// This defines the city outside, as global variables - JASON MA 
+var buttonWaiting = document.getElementById("searchCity");
+var searchEl = $("#searchTerm").val();
+
+// Step 1, wait for button click - JASON MA
+buttonWaiting.addEventListener('click', search);
+var cityLocation = "";
+
+  function search() {
+ // Step 2, target the value of the input - JASON MA
+   cityLocation = $("#searchTerm").val();
+    getFuture();
+ }
+
+ // Step 3, render the target - JASON MA
+ function getFuture() {
+  console.log("getFuture function has initiated");
+  
+  
+  
+  
+ /* var cityLocation = searchEl.val();
+  console.log( searchEl, searchEl.get(0).value );
+  c
+  console.log(cityLocation);
+  */
+
+
+  
+  
+ 
+  
+  var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q= " + cityLocation + "&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
+  fetch(requestUrl)
+   .then(function (response) {
+     return response.json();
+   })
+   .then(function (data) {
+  // Moment converts the time from data.list
+     $("#day-one-time").text(moment(data.list[0].dt_txt).format("MMM D, YYYY"));
+     $("#day-two-time").text(moment(data.list[8].dt_txt).format("MMM D, YYYY"));
+     $("#day-three-time").text(moment(data.list[16].dt_txt).format("MMM D, YYYY"));
+     $("#day-four-time").text(moment(data.list[24].dt_txt).format("MMM D, YYYY"));
+     $("#day-five-time").text(moment(data.list[32].dt_txt).format("MMM D, YYYY"));
+     console.log(data.list[0].dt_txt);
+     $("#day-one-temperature").text("Temperature " +data.list[0].main.temp);
+     $("#day-two-temperature").text("Temperature " +data.list[8].main.temp);
+     $("#day-three-temperature").text("Temperature " +data.list[16].main.temp);
+     $("#day-four-temperature").text("Temperature " +data.list[24].main.temp);
+     $("#day-five-temperature").text("Temperature "+ data.list[32].main.temp);
+     //Finds Humidity in next 5 days
+     $("#day-one-precipitation").text("Precipitation % " +data.list[0].pop);
+     $("#day-two-precipitation").text("Precipitation % " +data.list[8].pop);
+     $("#day-three-precipitation").text("Precipitation % " +data.list[16].pop);
+     $("#day-four-precipitation").text("Precipitation % " +data.list[24].pop);
+     $("#day-five-precipitation").text("Precipitation % "+ data.list[32].pop);
+    // Finds Wind Forecast
+     $("#day-one-wind").text("Wind " +data.list[0].wind.speed);
+     $("#day-two-wind").text("Wind " +data.list[8].wind.speed);
+     $("#day-three-wind").text("Wind " +data.list[16].wind.speed);
+     $("#day-four-wind").text("Wind " +data.list[24].wind.speed);
+     $("#day-five-wind").text("Wind "+ data.list[32].wind.speed);
+     // Finds Weather
+   
+     $("#day-one-weather").text("weather " +data.list[0].weather.description);
+     $("#day-two-weather").text("weather " +data.list[8].weather.description);
+     $("#day-three-weather").text("weather " +data.list[16].weather.description);
+     $("#day-four-weather").text("weather " +data.list[24].weather.description);
+     $("#day-five-weather").text("weather "+ data.list[32].weather.description);
+   });
+   
+  
+}
+
+
+
+
+search();
