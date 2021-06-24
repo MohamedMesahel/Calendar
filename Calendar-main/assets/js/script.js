@@ -562,11 +562,8 @@ eventsBox.append(start);
 };
 fetchButton.addEventListener('click', getApi);
 
-<<<<<<< HEAD:Calendar-main/assets/js/script.js
-=======
 /* This is the forecast function that is displayed on the HTML - JASON MA
 */
->>>>>>> ParanoiaEdit:assets/js/script.js
 // This defines the city outside, as global variables - JASON MA 
 var buttonWaiting = document.getElementById("searchCity");
 var searchEl = $("#searchTerm").val();
@@ -584,25 +581,7 @@ var cityLocation = "";
  // Step 3, render the target - JASON MA
  function getFuture() {
   console.log("getFuture function has initiated");
-<<<<<<< HEAD:Calendar-main/assets/js/script.js
-  
-  
-  
-  
- /* var cityLocation = searchEl.val();
-  console.log( searchEl, searchEl.get(0).value );
-  c
-  console.log(cityLocation);
-  */
-
-
-  
-  
- 
-  
-=======
    
->>>>>>> ParanoiaEdit:assets/js/script.js
   var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q= " + cityLocation + "&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
   fetch(requestUrl)
    .then(function (response) {

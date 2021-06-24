@@ -135,8 +135,8 @@ td {
 } /* Blue */
 
 .eventButton {
-  border: 1px solid #596475;
-  color: black;
+  padding-left:15px;
+  padding-right:15px;
 }
 
 
