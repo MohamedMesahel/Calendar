@@ -9,7 +9,7 @@ As well as neurotypical people can benefit from a centralized location in which 
 ## Features
 - Local events and event creator
 - Weather
-- US Hoylidays
+- US Holidays
 - Useful resources
 
 ## Table of Contents (Optional)
