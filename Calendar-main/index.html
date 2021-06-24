@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <title>Calendar</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
+  <!-- Bulma Link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+  <div id="page-container">
+    <header class="header">
+      <nav class="navbar has-shadow is-white">
+
+        <!-- Hamburger menu and Logo-->
+        <div class="navbar-brand">
+          <div class="is-flex-mobile is-justify-content-flex-start">
+            <a class="navbar-burger" id="burger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tools & Welcome Buttons-->
+        <div class="navbar-menu" id="nav-links">
+          <div class="navbar-start dropdown" id="toolButton">
+            <a class="navbar-item is-unselectable is-clickable" aria-haspopup="true" aria-controls="dropdown-menu">
+              Tools
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </a>
+
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content is-unselectable">
+                <a href="#" class="dropdown-item is-clickable">
+                  Dropdown item
+                </a>
+                <a class="dropdown-item is-clickable">
+                  Other dropdown item
+                </a>
+                <a href="#" class="dropdown-item is-clickable">
+                  Active dropdown item
+                </a>
+                <a href="#" class="dropdown-item is-clickable">
+                  Other dropdown item
+                </a>
+                <hr class="dropdown-divider">
+                <a href="#" class="dropdown-item is-clickable">
+                  With a divider
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="mx-auto is-hidden-touch">
+          <h1 class="is-size-1">
+            Life Organizer
+          </h1>
+        </div>
+
+        <!-- Help & Settings Buttons -->
+        <div class="navbar-menu" id="nav-links-right">
+          <div class="navbar-end is-unselectable is-clickable">
+            <a href="" class="navbar-item">Help</a>
+            <a href="" class="navbar-item">Settings</a>
+          </div>
+        </div>
+
+      </nav>
+    </header>
+    <!-- Main Section-->
+    <div class="px-4">
+      <div class="todo-grid-parent">
+        <div>
+          <div class="todo-input todo-block">
+            <span>To-Do:</span>
+            <input type="text" placeholder="Enter new to-do" />
+            <span>Category: </span>
+            <input type="text" placeholder="Enter category" list="categoryList" />
+            <datalist id="categoryList">
+              <option value=""></option>
+            </datalist>
+            <span>Date:</span>
+            <input type="date" id="dateInput" />
+            <span>Time:</span>
+            <input type="time" id="timeInput" />
+            <span></span>
+            <button id="addBtn">Add</button>
+            <span></span>
+            <button id="sortBtn">Sort by Date</button>
+            <span></span>
+            <label><input type="checkbox" id="shortlistBtn"> Incomplete First</label>
+          </div>
+
+          <!-- Table which lists todo's -->
+          <div class="py-4">
+            <div class=" p-4 todo-table-class">
+              <table id="todoTable" class=" todo-block">
+                <thead class="table is-bordered is-striped is-narrow is-hoverable">
+                  <tr>
+                    <td></td>
+                    <td>Date</td>
+                    <td>Time</td>
+                    <td>To-Do</td>
+                    <td>
+                      <select id="categoryFilter">
+                        <option value=""></option>
+                      </select>
+                    </td>
+                    <td></td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+
+          <!-- Local Events Box-->
+          <div id="eventsbox">
+            <h1>Local Events</h1>
+            <button class="eventButton" id="fetch-button">Click</button>
+          </div>
+          <!--End of Local Events Box-->
+
+          <section class="todo-block">
+            <div class="hero-body">
+              <p class="title">
+               Enter City
+              </p>
+              <div>
+                <input type="text" id ="searchTerm" class="searchValue" placeholder="city name">
+                <button type='button' class = "btn btn-primary" id = "searchCity">Search For City</button>
+            </div>
+           
+            <!-- Forecast showing city specific -->
+           <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-one-time">Day 1</h1></li> 
+              <li><p id = "day-one-temperature"> Temperature</p></li>
+              <li><p id = "day-one-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-one-wind"> WIND</p>  </li>
+              
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-two-time">Day 2</h1></li> 
+              <li><p id = "day-two-temperature"> Temperature</p> </li>
+              <li><p id = "day-two-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-two-wind"> WIND</p>  </li> 
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-three-time">Day 3</h1></li> 
+              <li><p id = "day-three-temperature"> Temperature</p> </li>
+              <li><p id = "day-three-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-three-wind"> WIND</p>  </li>  
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-four-time">Day 4</h1></li> 
+              <li><p id = "day-four-temperature"> Temperature</p> </li>
+              <li><p id = "day-four-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-four-wind"> WIND</p>  </li>
+          </ul>
+          </div>
+
+          <div id="eventsbox">
+            <ul>
+              <li><h1 id = "day-five-time">Day 5</h1></li> 
+              <li><p id = "day-five-temperature"> Temperature</p> </li>
+              <li><p id = "day-five-precipitation">Rain Chance</p> </li>
+              <li><p id = "day-five-wind"> WIND</p>  </li>
+              
+          </ul>
+          </div>
+
+          <!-- Forcast end -->
+            </div>
+          </section>
+
+        </div>
+
+        <div class="todo-calendar todo-block">
+          <div id="calendar"></div>
+        </div>
+      </div>
+
+      <div id="loading" style="display: none;">loading...</div>
+
+      <!-- class="todo-grid-parent"-->
+      <div class="todo-overlay" id="todo-overlay">
+        <div class="todo-modal " id="todo-modal">
+          <div class="todo-input todo-block">
+            <span>To-Do</span>
+            <input type="text" placeholder="Enter new to-do" id="todo-edit-todo" />
+            <span>Category:</span>
+            <input type="text" placeholder="Enter category" list="categoryList" id="todo-edit-category" />
+            <datalist id="categoryList">
+              <option value=""></option>
+            </datalist>
+            <span>Date:</span>
+            <input type="date" id="todo-edit-date" />
+            <span>Time:</span>
+            <input type="time" id="todo-edit-time" />
+            <span></span>
+            <button id="saveChangesBtn">Save Changes</button>
+
+          </div>
+        </div>
+        <div class="todo-modal-close-btn" id="todo-modal-close-btn">x</div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Team 5</strong> Task Scheduler Project
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Main JS and Hamburger JS links -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
+  <script src="./assets/js/hamburger_menu.js"></script>
+  <script src="./assets/js/script.js"></script>
+  
+</body>
+
+</html>

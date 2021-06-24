@@ -1,3 +1,7 @@
+<<<<<<< HEAD:Calendar-main/assets/css/style.css
+/* Declare Global Variabless */
+=======
+>>>>>>> ParanoiaEdit:assets/css/style.css
 * {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -19,7 +23,10 @@ input {
 #searchTerm {
 margin-bottom:15px;
 }
+<<<<<<< HEAD:Calendar-main/assets/css/style.css
+=======
 
+>>>>>>> ParanoiaEdit:assets/css/style.css
 #page-container {
   position: relative;
   min-height: 100vh;
@@ -49,6 +56,7 @@ margin-bottom:15px;
 td {
   border: 1px solid ;
   padding: 5px;
+  cursor: pointer;
 }
 
 .todo-input {
@@ -56,6 +64,7 @@ td {
   grid-template-columns: 1fr 1fr;
   row-gap: 1rem;
   background-color: white;
+  color: aqua;
 }
 
 .todo-table-class{
@@ -68,8 +77,9 @@ td {
   border: 3px solid rgba(16, 123, 223, 0.35);
   padding: 1rem;
   border-radius: 20px;
-  color: black;
+  color: rgb(70, 95, 124);
   background-color: rgba(255, 255, 255, 0.65);
+  font-weight: bolder;
 }
 
 .fc-view-harness{
@@ -94,6 +104,7 @@ td {
 .todo-modal {
   width: 50vw;
   height: 34vh;
+  cursor: pointer;
 }
 
 .todo-modal-close-btn{
@@ -109,6 +120,7 @@ td {
     border-radius: 50%;
    color: azure;
    font-weight: bold;
+   cursor: pointer;
 }
 
 .slideIntoView {
@@ -127,10 +139,23 @@ td {
   display: block;
   margin-bottom: 1rem;
   }
+<<<<<<< HEAD:Calendar-main/assets/css/style.css
+  
+  
+.button {
+  background-color: #008CBA;
+} /* Blue */
+
+.eventButton {
+  border: 1px solid #596475;
+  color: black;
+=======
 .eventButton{
   padding-left: 15px;
   padding-right: 15px;
+>>>>>>> ParanoiaEdit:assets/css/style.css
 }
+
 
 /* for mobile or small devices */
 @media screen and (max-width: 767px) {
