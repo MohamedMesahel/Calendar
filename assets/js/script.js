@@ -576,10 +576,25 @@ fetchButton.addEventListener('click', getApi);
 
 /* This is the forecast function that is displayed on the HTML - JASON MA
 */
-function getFuture() {
+// This defines the city outside, as global variables - JASON MA 
+var buttonWaiting = document.getElementById("searchCity");
+var searchEl = $("#searchTerm").val();
+
+// Step 1, wait for button click - JASON MA
+buttonWaiting.addEventListener('click', search);
+var cityLocation = "";
+
+  function search() {
+ // Step 2, target the value of the input - JASON MA
+   cityLocation = $("#searchTerm").val();
+    getFuture();
+ }
+
+ // Step 3, render the target - JASON MA
+ function getFuture() {
   console.log("getFuture function has initiated");
-  
-  var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=Seattle&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
+   
+  var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q= " + cityLocation + "&appid=cbe8fc6d3eba09369c7445d7ce20d535&units=imperial";
   fetch(requestUrl)
    .then(function (response) {
      return response.json();
@@ -621,4 +636,7 @@ function getFuture() {
   
 }
 
-getFuture();
+
+
+
+search();
