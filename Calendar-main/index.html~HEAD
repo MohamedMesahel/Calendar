@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <title>Calendar</title>
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
   <!-- Bulma Link -->
@@ -85,7 +85,7 @@
       <div class="todo-grid-parent">
         <div>
           <div class="todo-input todo-block">
-            <span>To-Do</span>
+            <span>To-Do:</span>
             <input type="text" placeholder="Enter new to-do" />
             <span>Category: </span>
             <input type="text" placeholder="Enter category" list="categoryList" />
@@ -94,7 +94,7 @@
             </datalist>
             <span>Date:</span>
             <input type="date" id="dateInput" />
-            <span>Time</span>
+            <span>Time:</span>
             <input type="time" id="timeInput" />
             <span></span>
             <button id="addBtn">Add</button>
@@ -113,7 +113,11 @@
                     <td></td>
                     <td>Date</td>
                     <td>Time</td>
+<<<<<<< HEAD:Calendar-main/index.html
                     <td>To-Do</td>
+=======
+                    <td>To-do</td>
+>>>>>>> ParanoiaEdit:index.html
                     <td>
                       <select id="categoryFilter">
                         <option value=""></option>
@@ -139,8 +143,13 @@
                Enter City
               </p>
               <div>
+<<<<<<< HEAD:Calendar-main/index.html
                 <input type="text" id ="searchTerm" class="searchValue" placeholder="city name">
                 <button type='button' class = "btn btn-primary" id = "searchCity">Search For City</button>
+=======
+                <input type="text" id ="searchTerm" class="searchValue" placeholder="City Name">
+                <button type='button' class = "btn btn-primary" id = "searchCity">Search</button>
+>>>>>>> ParanoiaEdit:index.html
             </div>
            
             <!-- Forecast showing city specific -->
@@ -210,14 +219,14 @@
           <div class="todo-input todo-block">
             <span>To-Do</span>
             <input type="text" placeholder="Enter new to-do" id="todo-edit-todo" />
-            <span>Category: </span>
+            <span>Category:</span>
             <input type="text" placeholder="Enter category" list="categoryList" id="todo-edit-category" />
             <datalist id="categoryList">
               <option value=""></option>
             </datalist>
             <span>Date:</span>
             <input type="date" id="todo-edit-date" />
-            <span>Time</span>
+            <span>Time:</span>
             <input type="time" id="todo-edit-time" />
             <span></span>
             <button id="saveChangesBtn">Save Changes</button>
@@ -240,10 +249,10 @@
 
 
   <!-- Main JS and Hamburger JS links -->
-  <script src="./assets/js/hamburger_menu.js"></script>
-  <script src="./assets/js/script.js"></script>
+  <!-- USES MOMENT and OTHER STUFF - JASON MA -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> 
+  <script src="assets/js/hamburger_menu.js"></script>
+  <script src="assets/js/script.js"></script>
 </body>
-
 </html>

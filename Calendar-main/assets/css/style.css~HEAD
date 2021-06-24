@@ -1,4 +1,7 @@
+<<<<<<< HEAD:Calendar-main/assets/css/style.css
 /* Declare Global Variabless */
+=======
+>>>>>>> ParanoiaEdit:assets/css/style.css
 * {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -20,12 +23,20 @@ input {
 #searchTerm {
 margin-bottom:15px;
 }
+<<<<<<< HEAD:Calendar-main/assets/css/style.css
+=======
+
+>>>>>>> ParanoiaEdit:assets/css/style.css
 #page-container {
   position: relative;
   min-height: 100vh;
   background-color: #1F2232;
-  background-image: url("/Calendar-main/assets/images/image.png");
+  background-image: url("/assets/images/image.png");
   background-size: auto;
+  }
+
+  .todo-input{
+    font-weight: bolder;
   }
   
   .header{
@@ -128,6 +139,7 @@ td {
   display: block;
   margin-bottom: 1rem;
   }
+<<<<<<< HEAD:Calendar-main/assets/css/style.css
   
   
 .button {
@@ -137,6 +149,11 @@ td {
 .eventButton {
   border: 1px solid #596475;
   color: black;
+=======
+.eventButton{
+  padding-left: 15px;
+  padding-right: 15px;
+>>>>>>> ParanoiaEdit:assets/css/style.css
 }
 
 
