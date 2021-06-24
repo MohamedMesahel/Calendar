@@ -33,13 +33,13 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Secreen shots
 Welcome Page with useful resources
-![Welcome Page](./assets/images/Welcome.png)
+![Welcome Page](Calendar-main/assets/images/Welcome.png)
 Main Application responsive page
-![Appllication Page](./assets/images/Main.png)
+![Appllication Page](Calendar-main/assets/images/Main.png)
 Our Presentation
-![Presentation Page](./assets/images/Team.png)
+![Presentation Page](Calendar-main/assets/images/Team.png)
 Website general Wireframe
-![Wireframe Page](./assets/images/Wireframe.png)
+![Wireframe Page](Calendar-main/assets/images/Wireframe.png)
 
 ## Credits
 Mohamed Mesahel
