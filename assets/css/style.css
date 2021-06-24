@@ -24,7 +24,7 @@ margin-bottom:15px;
   position: relative;
   min-height: 100vh;
   background-color: #1F2232;
-  background-image: url("/Calendar-main/assets/images/image.png");
+  background-image: url("../images/image.png");
   background-size: auto;
   }
 
